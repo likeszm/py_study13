@@ -1,6 +1,6 @@
 #py学习记录13：文件目录操作
 """
-
+利用 os 和 shutil 两个库可以实现基本的文件目录操作
 
 """
 
@@ -69,10 +69,39 @@ os.chdir('C:/Users/likes/Desktop/temp')
 
 
 #8.递归遍历所有文件
+"""
+#第一种，只获取清单
+file_list = []
+dirs_list = []
+
+for (dirpath, dirnames, filenames) in os.walk('C:/Users/likes/Desktop/temp') :
+    file_list += filenames
+    dirs_list += dirnames
+
+print(file_list)
+print(dirs_list)
+
+#第二种，获取完整路径
+for (dirpath, dirnames, filenames) in os.walk('C:/Users/likes/Desktop/temp'):
+    for fn in filenames:
+        # 把 dirpath 和 每个文件名拼接起来 就是全路径
+        fpath = os.path.join(dirpath, fn)
+
+        print(fpath)
+"""
 
 
+#9.目录下的所有文件和子目录名,获取当前目录下的列表
+"""
+targetDir = r'C:/Users/likes/Desktop/temp_2'
+file_list = os.listdir(targetDir)
 
-#9.目录下的所有文件和子目录名
+print(file_list)
+"""
+
 
 #10.查找指定扩展名文件和目录
+import glob
 
+exec_list = glob.glob('C:/Users/likes/Desktop/temp_2/temp2/*.txt')
+print(exec_list)
